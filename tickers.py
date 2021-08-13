@@ -20,6 +20,12 @@ class Tickers():
     def getRandomTick(self):
         return random.choice(self.ticks)
 
+    def getXRandomTicks(self, num):
+        tmplst = []
+        for i in range(num):
+            tmplst.append(random.choice(self.ticks))
+        return tmplst
+
     def getNumTickers(self):
         return len(self.ticks)
 

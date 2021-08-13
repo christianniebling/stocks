@@ -1,26 +1,28 @@
+# My functions
+from tickers import Tickers
 
 # Raw Package
 import numpy
 import pandas 
-import csv
 
-#Data Source
+# Data Source
 import yfinance
 
-#Data viz
+# Data viz
 import plotly.graph_objs as go
 import matplotlib.pyplot
 
 #data = yfinance.download(tickers = 'UBER', period = '5d', interval = '5m')
-tickName = 'UBER'
+t1 = Tickers()
+#tickName = 'UBER'
+tickName = t1.getRandomTick()
 stock = yfinance.Ticker(tickName)
-data = stock.history(period='3mo', interval='2d')
+data = stock.history(period='1y', interval='1d')
 
 investment = 50 # unit is number of stocks
 init = data['Open'][0]
 fin = data['Close'][-1]
 delta = (fin-init)/init*100 #precent change
-print(data)
 
 buyin = investment * init #buy in price
 cashout = fin * investment - buyin #cash out price
