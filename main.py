@@ -2,6 +2,7 @@
 # Raw Package
 import numpy
 import pandas 
+import csv
 
 #Data Source
 import yfinance
@@ -13,7 +14,7 @@ import matplotlib.pyplot
 #data = yfinance.download(tickers = 'UBER', period = '5d', interval = '5m')
 tickName = 'UBER'
 stock = yfinance.Ticker(tickName)
-data = stock.history(period='3mo', interval='1d')
+data = stock.history(period='3mo', interval='2d')
 
 investment = 50 # unit is number of stocks
 init = data['Open'][0]
