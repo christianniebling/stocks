@@ -15,10 +15,11 @@ class Tickers():
                 continue
             mylist.append(row[0])
             counter += 1
-            if counter > 100: #only run 100 times
-                break
         self.ticks = mylist
 
     def getRandomTick(self):
         return random.choice(self.ticks)
+
+    def getNumTickers(self):
+        return len(self.ticks)
 
