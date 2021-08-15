@@ -1,13 +1,17 @@
 from tickers import Tickers
 from person import Person
+import yfinance
+import random
 
 t1 = Tickers()
-p1 = Person(1000,10,t1)
+#p1 = Person(10,t1)
 
-print(p1.getTickerSelection())
+l1 = ["ANGO", "AAPL", "UBER", "NVDA"]
+data = yfinance.download(tickers = l1, period = '5d', interval = '5m')
+print(data["Close"][l1[1]])
 
-# print("Number of tickers accounted for {}".format(t1.getNumTickers()))
-# print("I have access to instance variables {}".format(t1.ticks[2]))
-# for i in range(10):
-#     print(t1.getRandomTick())
+print(random.choice(l1))
+
+#print(p1.getTickerSelection())
+
 

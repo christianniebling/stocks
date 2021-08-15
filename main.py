@@ -1,5 +1,6 @@
 # My functions
 from tickers import Tickers
+from person import Person
 
 # Raw Package
 import numpy
@@ -12,34 +13,10 @@ import yfinance
 import plotly.graph_objs as go
 import matplotlib.pyplot
 
-#data = yfinance.download(tickers = 'UBER', period = '5d', interval = '5m')
-t1 = Tickers()
-#tickName = 'UBER'
-tickName = t1.getRandomTick()
-stock = yfinance.Ticker(tickName)
-data = stock.history(period='1y', interval='1d')
 
-investment = 50 # unit is number of stocks
-init = data['Open'][0]
-fin = data['Close'][-1]
-delta = (fin-init)/init*100 #precent change
+t1 = Tickers() # we only need 1 ticker object to generate the whole list of NYSE tickers
+p1 = Person(100,t1)
+p1.getNetBalance()
+print(p1.funds)
 
-buyin = investment * init #buy in price
-cashout = fin * investment - buyin #cash out price
 
-print("Date range {} to {}".format(data.index[0], data.index[-1]))
-print("You buy {} stocks of {}".format(investment, stock.info['shortName']))
-print("This costs you {} USD".format(buyin))
-print("The stock's precent change is {}".format(delta))
-print("Your gain is {}".format(cashout))
-
-xaxis = []
-yaxis = []
-counter = 0
-for x in data['Close']:
-    yaxis.append(x)
-    xaxis.append(counter)
-    counter += 1
-matplotlib.pyplot.plot(xaxis, yaxis)
-matplotlib.pyplot.show()
-#data['Close'].plot()
